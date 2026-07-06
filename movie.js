@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const marqueeLights = document.getElementById('marqueeLights');
+    if (marqueeLights) {
+        const bulbCount = 9;
+        for (let i = 0; i < bulbCount; i++) {
+            const bulb = document.createElement('span');
+            bulb.className = 'bulb';
+            bulb.style.animationDelay = `${(i * 1.6) / bulbCount}s`;
+            marqueeLights.appendChild(bulb);
+        }
+    }
+
     const modeToggle = document.getElementById('modeToggle');
     const htmlElement = document.documentElement;
     const currentTheme = localStorage.getItem('theme');
