@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th" data-mode="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lanna's Playlist 💙🎶</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700&family=Mitr:wght@400;500&family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="music.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">← กลับหน้าหลัก</a>
+        <div class="nav-right">
+            <button class="mode-btn" id="modeToggle" aria-label="Toggle Theme"></button>
+        </div>
+    </nav>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <span class="hero-badge">LANNA RADIO 📻</span>
+                
+                <h1 class="hero-title">
+                    <span class="hi">สถานีเพลงรัก</span>
+                <br>
+                    ส่งเพลงนี้มาจีบลานนา <span class="heart">💙</span>
+                </h1>
+
+                <div class="glass-player">
+                    
+                    <div class="visualizer">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+
+                    <div class="vinyl-container">
+                        <div class="vinyl-record">
+                            <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t1.15752-9/736510709_27478629311764020_7996042121534600819_n.png?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_ohc=RVjM1wChB6YQ7kNvwHTIoTa&_nc_oc=Adoz5ofEsDHUZyzjXbJyw83SEt_EL8jZbuZsFX9Z3ulCcOCj5ZhTV4UHhSbLi1G0HrqHwnTpzpKsjTpHvqIdJTrf&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_ss=7a22e&oh=03_Q7cD5wEvu7d9Q494UK6cJZRR_IEkyswqU8tyFDNAnWYNhF_jqg&oe=6A6F8A73" alt="Lanna Album Cover" class="album-cover">
+                        </div>
+                    </div>
+
+                    <div class="iframe-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/kdXBPCkxDuk?start=39&rel=0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <div class="quote-container">
+                        <p id="random-quote">กำลังนึกคำจีบอยู่ค้าบบบ... ✨</p>
+                    </div>
+
+                    <a href="https://youtube.com/playlist?list=PLw264t7f7ItAMZd9nABN8H1wZYy0EvdcB" target="_blank" class="btn-main">
+                        🎧 เปิดฟังลิสต์ทั้งหมดบน YouTube
+                    </a>
+                </div>
+
+                <div class="request-box">
+                    <h3 class="request-title">มีเพลงไรแนะนำมั้ยอ้วนน? 💌</h3>
+                    <div class="request-input-group">
+                        <input type="text" id="song-input" placeholder="พิมพ์ชื่อเพลง หรือแปะลิงก์ตรงนี้...">
+                        <button id="send-song-btn" class="btn-send-song">ส่งให้กัส 💌</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="music.js"></script>
+</body>
+</html>

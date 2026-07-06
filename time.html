@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th" data-mode="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Secret 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700&family=Mitr:wght@300;400;500&family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="time.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">← กลับหน้าหลัก</a>
+        <div class="nav-right">
+            <button class="mode-btn" id="modeToggle" aria-label="Toggle Theme"></button>
+        </div>
+    </nav>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <span class="hero-badge">TOP SECRET 🔒</span>
+                
+                <div id="scanner-view" class="glass-card">
+                    <h1 class="hero-title">ความลับ 🚫</h1>
+                    <p class="subtitle">ระบบตรวจจับความน่ารัก... กรุณายืนยันตัวตนว่าเป็น <b>"ลานนา"</b> เพื่อเปิดอ่านความลับ</p>
+                    
+                    <div class="scanner-container">
+                        <div class="fingerprint-box" id="scan-btn">
+                            <div class="scan-line" id="scan-line"></div>
+                            <svg class="finger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 6C8.686 6 6 8.686 6 12C6 14.5 7.5 16.5 9.5 17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 10C10.895 10 10 10.895 10 12C10 13.5 11 14.5 12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M16 12C16 9.79 14.21 8 12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="scan-status" id="scan-status">แตะค้างไว้เพื่อสแกนนิ้ว 👆</p>
+                </div>
+
+                <div id="secret-view" class="glass-card hidden">
+                    <div class="unlock-icon">🔓</div>
+                    <h2 class="secret-title">Access Granted ✨</h2>
+                    <p class="secret-message">
+                        "ความลับก็คือ... ไว้มาบอก 💙" <br>
+                    </p>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="input-group">
+                        <label for="answerInput">พิมพ์ความรู้สึกส่งกลับมาให้กัสหน่อยยย 👇</label>
+                        <input type="text" id="answerInput" placeholder="พิมพ์ตรงนี้เลย...">
+                        <button id="sendBtn" class="btn-main btn-fill">ส่งความรู้สึก 💌</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="time.js"></script>
+</body>
+</html>

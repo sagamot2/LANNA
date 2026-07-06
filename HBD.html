@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Lanna 💙</title>
+  
+  <link rel="stylesheet" href="HBD.css">
+  <style>
+    #start-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #020617; 
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 0.8s ease-out;
+    }
+    .gift-box {
+      font-size: 4rem;
+      animation: bounceGift 2s infinite ease-in-out;
+    }
+    @keyframes bounceGift {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="start-overlay">
+    <div class="gift-box">🎁✨</div>
+    <h2 style="color: #38bdf8; font-family: 'Mitr', sans-serif; margin-top: 20px; font-weight: 500;">มีของขวัญมาส่งครับ! 💌</h2>
+    <p style="color: #bae6fd; font-family: 'Sarabun', sans-serif; margin-top: 10px; font-size: 14px;">(แตะที่หน้าจอ 1 ครั้งเพื่อเปิดดู 👆)</p>
+  </div>
+
+  <div class="card">
+    <canvas id="bg"></canvas>
+    <div class="content">
+      <div class="ribbon">Happy Birthday 🎂✨</div>
+      
+      <div class="main-slideshow">
+        <div class="slider-track" id="sliderTrack">
+          <img class="slide-img" src="lanna1.png" alt="Lanna 1">
+          <img class="slide-img" src="lanna2.png" alt="Lanna 2">
+          <img class="slide-img" src="lanna3.jpg" alt="Lanna 3">
+        </div>
+      </div>
+      
+      <div class="hearts-row">
+        <span class="heart-sm">💖</span>
+        <span class="heart-big">🩵</span>
+        <span class="heart-sm">💖</span>
+      </div>
+      
+      <div class="to-text">for you, 🥺💘</div>
+      <div class="name">ลานนา</div>
+      <div class="name-th">คนเก่งของกัส 🐰💙</div>
+
+      <div class="date-wrap">
+        <div class="date">🎂 13 ตุลาคม 🎂</div>
+      </div>
+      
+      <div class="gif-row">
+        <img class="gif-side" src="https://media1.giphy.com/media/T7eXMe9V6d1w2XslCt/giphy.webp" alt="Lanna">
+        <img class="gif-side" src="https://media1.giphy.com/media/TuW07kwzG9r222mKiG/giphy.webp" alt="Lanna">
+        <img class="gif-side" src="https://media4.giphy.com/media/wfnLS9E4VK1LdYGAJu/giphy.webp" alt="Lanna">
+        <img class="gif-side" src="https://media3.giphy.com/media/855IqsZHfrfVqbGNVb/giphy.webp" alt="Lanna">
+      </div>
+
+      <div class="cute-note">ไว้ใกล้ถึงวันเกิดเดี๋ยวมีเซอร์ไพรส์ให้นะ อิอิ 🎁🧸💙</div>
+
+      <a href="index.html" class="back-btn">กลับหน้าหลัก 🚀</a>
+      
+    </div> 
+  </div> 
+
+  <iframe id="bg-music"
+    style="opacity: 0; position: absolute; width: 1px; height: 1px; pointer-events: none; z-index: -10;" 
+    title="Happy Birthday Song" 
+    frameborder="0" 
+    allow="autoplay; encrypted-media">
+  </iframe>
+
+  <script src="HBD.js"></script>
+
+  <script>
+    document.getElementById('start-overlay').addEventListener('click', function() {
+      this.style.opacity = '0';
+      setTimeout(() => {
+        this.style.display = 'none';
+      }, 800);
+
+      const musicPlayer = document.getElementById('bg-music');
+      musicPlayer.src = "https://www.youtube.com/embed/Itvw76ej4Mk?start=23&autoplay=1";
+    });
+
+    let currentSlide = 0;
+    const track = document.getElementById('sliderTrack');
+    const totalSlides = 3; 
+    
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 3000); 
+  </script>
+
+</body>
+</html>

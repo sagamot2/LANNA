@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanna's Profile 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="birth.css">
+</head>
+<body>
+    <a href="index.html" class="back-btn">← กลับไปหน้าหลัก</a>
+    
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="profile-container">
+        <div class="glass-card">
+            
+            <div class="avatar-section">
+                <div class="avatar-border">
+                    <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t1.15752-9/734515151_2858171267868739_5683074160129355077_n.png?stp=dst-png_s960x960&_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=z851YhYmDXwQ7kNvwETk4tj&_nc_oc=Adpc8v2iPQFeWAXUIpQF-djxSQVsp4ziRKcBahU3pn-D45Ls87tiuRSNLbNsnBSxVW6_niBnP5xGGvFtk5PufV1W&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_ss=7b6a8&oh=03_Q7cD5wFeSDtDc7jSJw3MAxVPJ7m3s3ZNwX45lrQrfQuqDGCvAw&oe=6A6F6767" alt="Lanna" class="avatar">
+                </div>
+                <div class="status-badge" id="status-badge">สถานะ: อะไรหว่าาาาาาา 👀</div>
+            </div>
+            
+            <h1 class="name">ลานนา (สุพิชญา)</h1>
+            <p class="subtitle">"คนอะไร สวยจัง 💙"</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-icon">🎂</span>
+                    <span class="stat-title">วันเกิด</span>
+                    <span class="stat-value">13 ตุลาคม</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">📏</span>
+                    <span class="stat-title">ส่วนสูง</span>
+                    <span class="stat-value">ตัวเล็กกกน่ารัก</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">✨</span>
+                    <span class="stat-title">ความน่ารัก</span>
+                    <span class="stat-value">1,000,000%</span>
+                </div>
+            </div>
+
+            <div class="slider-container" id="slider-container">
+                <p class="slider-instruction">เลื่อนขวาเพื่อตกลงเป็นแฟน 👉</p>
+                <div class="slider-wrapper">
+                    <input type="range" min="0" max="100" value="0" class="love-slider" id="love-slider">
+                </div>
+            </div>
+            
+            <div id="success-msg" class="success-hidden">
+                🎉 เย้! เป็นแฟนกันแล้วนะ ห้ามเปลี่ยนใจนะะะ! 💙
+            </div>
+
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="birth.js"></script>
+</body>
+</html>

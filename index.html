@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th" data-mode="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>For Lanna 💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Sriracha&family=Anuphan:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="index.css"/>
+  <meta property="og:type" content="website">
+<meta property="og:url" content="https://4youba3e.netlify.app/">
+<meta property="og:title" content="For you girl 💖">
+<meta property="og:description" content="เว็บไซต์นี้กัสตั้งใจทำมาให้ลานนานะ 💙">
+<meta property="og:image" content="https://4youba3e.netlify.app/lanna.png">
+</head>
+<body>
+<div class="page-transition" id="pageTransition"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div id="progressBar"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">FOR LANNA</a>
+
+  <div class="nav-right">
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="เปิด/ปิดเพลง" aria-pressed="false" title="เพลงพื้นหลัง">
+      <span class="music-ring"></span>
+      <span class="music-icon" id="musicIcon">♪</span>
+    </button>
+    <span class="mode-icon" id="modeIcon" onclick="toggleMode()" title="สลับโหมด">🌙</span>
+    <button class="mode-btn" id="modeBtn" onclick="toggleMode()" aria-label="สลับ light/dark"></button>
+  </div>
+</nav>
+
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/bg-music.mp3#t=65" type="audio/mpeg"/>
+</audio>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-badge">✦ FOR YOU, LANNA ✦</div>
+
+      <h1 class="hero-title">
+        <span class="hi">你好 ♡</span>
+        <span class="acc-word">ลานนา</span>
+        <span class="heart">  我爱你 💙</span>
+      </h1>
+
+      <p class="hero-sub">
+        ทำเว็บนี้มาจีบครับโผมม<br>
+        รับรักกัสหน่อยยยดิ♡
+      </p>
+
+      <div class="menu-grid">
+        <a href="HBD.html" class="menu-item hbd-special">
+          <span class="mi-icon">🎉</span>
+          <div class="mi-text">
+            <span class="mi-title hbd-title-text">Happy Birthday</span>
+            <span class="mi-sub">วันเกิดออเจ้านั่นกระไร</span>
+          </div>
+        </a>
+
+        <a href="love.html" class="menu-item mi-love">
+          <span class="mi-icon mi-icon-envelope">
+            <span class="env-flap"></span>
+            <span class="env-heart">♡</span>
+          </span>
+          <div class="mi-text">
+            <span class="mi-title">Love</span>
+            <span class="mi-sub">ความลับ</span>
+          </div>
+        </a>
+        <a href="birth.html" class="menu-item mi-birth">
+          <span class="mi-icon mi-icon-candle">
+            <span class="candle-flame"></span>
+            🎂
+          </span>
+          <div class="mi-text">
+            <span class="mi-title">About You</span>
+            <span class="mi-sub">เกี่ยวกับเธอ</span>
+          </div>
+        </a>
+        <a href="movie.html" class="menu-item mi-movie">
+          <span class="mi-icon">🎬</span>
+          <div class="mi-text">
+            <span class="mi-title">Movie</span>
+            <span class="mi-sub">ดูหนัง</span>
+          </div>
+        </a>
+        <a href="music.html" class="menu-item mi-music">
+          <span class="mi-icon mi-icon-eq">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </span>
+          <div class="mi-text">
+            <span class="mi-title">Music</span>
+            <span class="mi-sub">เพลง</span>
+          </div>
+        </a>
+        <a href="time.html" class="menu-item mi-time">
+          <span class="mi-icon mi-icon-clock">
+            <span class="clock-hand clock-hour"></span>
+            <span class="clock-hand clock-min"></span>
+          </span>
+          <div class="mi-text">
+            <span class="mi-title">Our Time</span>
+            <span class="mi-sub">เวลา</span>
+          </div>
+        </a>
+        <a href="contack.html" class="menu-item mi-contact">
+          <span class="mi-icon mi-icon-ping">
+            <span class="ping-ripple"></span>
+            📞
+          </span>
+          <div class="mi-text">
+            <span class="mi-title">คลิกเพื่อ</span>
+            <span class="mi-sub">ติดต่อกัส</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="contact-form-box" style="margin-top: 40px; padding: 0; width: 100%;">
+        <div class="form-card" style="background: linear-gradient(135deg, var(--acc-dim), var(--card-bg)); border: 1.5px solid var(--acc); box-shadow: 0 4px 20px var(--glow);">
+          <h2 class="form-card-title" style="justify-content: center; font-size: 1.3rem;">✦ คุยกับกัส (AI) ✦</h2>
+          <div class="form-group">
+            <label class="form-label" style="text-align: center;">อยากถามอะไรกัส พิมพ์มาได้เลย 👇</label>
+            <input type="text" id="aiInput" class="form-input" placeholder="เช่น กัสชอบลานนาตรงไหน?" maxlength="300">
+          </div>
+          <button onclick="sendToGus()" id="aiBtn" class="form-submit">ส่งข้อความ 💌</button>
+          <div id="aiStatus" class="form-status" style="margin-top: 15px; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="f-copy">&copy; 2026 <span>GUS</span> 💙</div>
+    <div class="f-right">
+      <span class="f-clock" id="liveClock">00:00:00</span>
+      <div class="f-dot"></div>
+    </div>
+  </footer>
+</main>
+
+<script src="index.js"></script>
+</body>
+</html>
