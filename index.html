@@ -33,9 +33,8 @@
   </div>
 </nav>
 
-<audio id="bgMusic" loop preload="none">
-  <source src="assets/bg-music.mp3#t=65" type="audio/mpeg"/>
-</audio>
+<div id="ytPlayer" style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;overflow:hidden;"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <main>
   <section class="hero">
@@ -118,22 +117,10 @@
             📞
           </span>
           <div class="mi-text">
-            <span class="mi-title">คลิกเพื่อ</span>
-            <span class="mi-sub">ติดต่อกัส</span>
+            <span class="mi-title">click</span>
+            <span class="mi-sub">contact me</span>
           </div>
         </a>
-      </div>
-
-      <div class="contact-form-box" style="margin-top: 40px; padding: 0; width: 100%;">
-        <div class="form-card" style="background: linear-gradient(135deg, var(--acc-dim), var(--card-bg)); border: 1.5px solid var(--acc); box-shadow: 0 4px 20px var(--glow);">
-          <h2 class="form-card-title" style="justify-content: center; font-size: 1.3rem;">✦ คุยกับกัส (AI) ✦</h2>
-          <div class="form-group">
-            <label class="form-label" style="text-align: center;">อยากถามอะไรกัส พิมพ์มาได้เลย 👇</label>
-            <input type="text" id="aiInput" class="form-input" placeholder="เช่น กัสชอบลานนาตรงไหน?" maxlength="300">
-          </div>
-          <button onclick="sendToGus()" id="aiBtn" class="form-submit">ส่งข้อความ 💌</button>
-          <div id="aiStatus" class="form-status" style="margin-top: 15px; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap;"></div>
-        </div>
       </div>
 
     </div>
