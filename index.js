@@ -95,15 +95,13 @@ function toggleMusic() {
   }
 }
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 const transitionOverlay = document.getElementById('pageTransition');
 
 requestAnimationFrame(() => {
   document.body.classList.add('page-ready');
 });
 
-if (!prefersReducedMotion && transitionOverlay) {
+if (transitionOverlay) {
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href]');
     if (!link) return;
