@@ -4,109 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Lanna 💙</title>
-  
   <link rel="stylesheet" href="HBD.css">
-  <style>
-    #start-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: #020617; 
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: opacity 0.8s ease-out;
-    }
-    .gift-box {
-      font-size: 4rem;
-      animation: bounceGift 2s infinite ease-in-out;
-    }
-    @keyframes bounceGift {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-15px) scale(1.1); }
-    }
-  </style>
 </head>
 <body>
-  
+
   <div id="start-overlay">
-    <div class="gift-box">🎁✨</div>
-    <h2 style="color: #38bdf8; font-family: 'Mitr', sans-serif; margin-top: 20px; font-weight: 500;">มีของขวัญมาส่งครับ! 💌</h2>
-    <p style="color: #bae6fd; font-family: 'Sarabun', sans-serif; margin-top: 10px; font-size: 14px;">(แตะที่หน้าจอ 1 ครั้งเพื่อเปิดดู 👆)</p>
+    <div class="candle-wrap" id="candleWrap">
+      <svg class="candle-svg" viewBox="0 0 60 140" width="70" height="164">
+        <defs>
+          <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#fb7185"/>
+            <stop offset="55%" stop-color="#f3c477"/>
+            <stop offset="100%" stop-color="#fff4d6"/>
+          </linearGradient>
+        </defs>
+        <ellipse class="flame-glow" cx="30" cy="24" rx="26" ry="30"/>
+        <path class="flame" d="M30 6 C 20 22, 20 34, 30 44 C 40 34, 40 22, 30 6 Z"/>
+        <rect class="wick" x="28" y="40" width="4" height="10" rx="2"/>
+        <ellipse class="candle-top" cx="30" cy="48" rx="16" ry="5"/>
+        <rect class="candle-body" x="14" y="48" width="32" height="80" rx="6"/>
+        <rect class="candle-stripe" x="14" y="70" width="32" height="10"/>
+      </svg>
+    </div>
+    <h2>หลับตา อธิษฐาน แล้วแตะเทียนเพื่อเป่าดับนะ 🕯️</h2>
+    <p>(ของขวัญกำลังรออยู่ข้างใน 💌)</p>
   </div>
 
-  <div class="card">
+  <div class="card" id="card">
     <canvas id="bg"></canvas>
     <div class="content">
-      <div class="ribbon">Happy Birthday 🎂✨</div>
-      
+      <div class="ribbon">✦ Happy Birthday ✦</div>
+
       <div class="main-slideshow">
-        <div class="slider-track" id="sliderTrack">
-          <img class="slide-img" src="lanna1.png" alt="Lanna 1">
-          <img class="slide-img" src="lanna2.png" alt="Lanna 2">
-          <img class="slide-img" src="lanna3.jpg" alt="Lanna 3">
+        <div class="ring-glow"></div>
+        <div class="slider-frame">
+          <div class="slider-track" id="sliderTrack">
+            <img class="slide-img" src="lanna1.png" alt="Lanna 1">
+            <img class="slide-img" src="lanna2.png" alt="Lanna 2">
+            <img class="slide-img" src="lanna3.jpg" alt="Lanna 3">
+          </div>
         </div>
       </div>
-      
+      <div class="slide-dots" id="sliderDots"></div>
+
       <div class="hearts-row">
         <span class="heart-sm">💖</span>
         <span class="heart-big">🩵</span>
         <span class="heart-sm">💖</span>
       </div>
-      
+
       <div class="to-text">for you, 🥺💘</div>
       <div class="name">ลานนา</div>
       <div class="name-th">คนเก่งของกัส 🐰💙</div>
 
-      <div class="date-wrap">
-        <div class="date">🎂 13 ตุลาคม 🎂</div>
-      </div>
-      
-      <div class="gif-row">
-        <img class="gif-side" src="https://media1.giphy.com/media/T7eXMe9V6d1w2XslCt/giphy.webp" alt="Lanna">
-        <img class="gif-side" src="https://media1.giphy.com/media/TuW07kwzG9r222mKiG/giphy.webp" alt="Lanna">
-        <img class="gif-side" src="https://media4.giphy.com/media/wfnLS9E4VK1LdYGAJu/giphy.webp" alt="Lanna">
-        <img class="gif-side" src="https://media3.giphy.com/media/855IqsZHfrfVqbGNVb/giphy.webp" alt="Lanna">
+      <div class="date-seal">
+        <div class="seal-inner">🎂<br>13<br>ต.ค.</div>
       </div>
 
-      <div class="cute-note">ไว้ใกล้ถึงวันเกิดเดี๋ยวมีเซอร์ไพรส์ให้นะ อิอิ 🎁🧸💙</div>
+      <div class="memory-grid">
+        <figure class="memory-item">
+          <span class="tape"></span>
+          <img src="https://media1.giphy.com/media/T7eXMe9V6d1w2XslCt/giphy.webp" alt="Lanna">
+          <figcaption>you</figcaption>
+        </figure>
+        <figure class="memory-item">
+          <span class="tape"></span>
+          <img src="https://media1.giphy.com/media/TuW07kwzG9r222mKiG/giphy.webp" alt="Lanna">
+          <figcaption>us</figcaption>
+        </figure>
+        <figure class="memory-item">
+          <span class="tape"></span>
+          <img src="https://media4.giphy.com/media/wfnLS9E4VK1LdYGAJu/giphy.webp" alt="Lanna">
+          <figcaption>smile</figcaption>
+        </figure>
+        <figure class="memory-item">
+          <span class="tape"></span>
+          <img src="https://media3.giphy.com/media/855IqsZHfrfVqbGNVb/giphy.webp" alt="Lanna">
+          <figcaption>love</figcaption>
+        </figure>
+      </div>
 
-      <a href="index.html" class="back-btn">กลับหน้าหลัก 🚀</a>
-      
-    </div> 
-  </div> 
+      <svg class="divider" viewBox="0 0 220 14" preserveAspectRatio="none">
+        <path d="M0 7 Q 27.5 0, 55 7 T 110 7 T 165 7 T 220 7" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity="0.5"/>
+      </svg>
+
+      <div class="note-card">
+        <p class="cute-note">ไว้ใกล้ถึงวันเกิดเดี๋ยวมีเซอร์ไพรส์ให้นะ อิอิ 🎁🧸💙</p>
+      </div>
+
+      <a href="index.html" class="back-btn">← กลับหน้าหลัก</a>
+
+    </div>
+  </div>
 
   <iframe id="bg-music"
-    style="opacity: 0; position: absolute; width: 1px; height: 1px; pointer-events: none; z-index: -10;" 
-    title="Happy Birthday Song" 
-    frameborder="0" 
+    style="opacity: 0; position: absolute; width: 1px; height: 1px; pointer-events: none; z-index: -10;"
+    title="Happy Birthday Song"
+    frameborder="0"
     allow="autoplay; encrypted-media">
   </iframe>
 
   <script src="HBD.js"></script>
-
-  <script>
-    document.getElementById('start-overlay').addEventListener('click', function() {
-      this.style.opacity = '0';
-      setTimeout(() => {
-        this.style.display = 'none';
-      }, 800);
-
-      const musicPlayer = document.getElementById('bg-music');
-      musicPlayer.src = "https://www.youtube.com/embed/Itvw76ej4Mk?start=23&autoplay=1";
-    });
-
-    let currentSlide = 0;
-    const track = document.getElementById('sliderTrack');
-    const totalSlides = 3; 
-    
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }, 3000); 
-  </script>
-
 </body>
 </html>
