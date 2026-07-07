@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lanna's Playlist 💙🎶</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700&family=Mitr:wght@400;500&family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Mitr:wght@300;400;500&family=Sriracha&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="music.css">
 </head>
 <body>
@@ -29,11 +29,10 @@
                 <h1 class="hero-title">
                     <span class="hi">สถานีเพลงรัก</span>
                 <br>
-                    ส่งเพลงนี้มาจีบลานนา <span class="heart">💙</span>
+                    เปิดให้ลานนาฟังคนเดียว <span class="heart">💙</span>
                 </h1>
 
                 <div class="glass-player">
-                    
                     <div class="visualizer">
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div>
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -45,34 +44,135 @@
                         </div>
                     </div>
 
-                    <div class="iframe-container">
-                        <iframe 
-                            src="https://www.youtube.com/embed/kdXBPCkxDuk?start=39&rel=0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
+                    <div class="video-lock-wrapper">
+                        <div class="iframe-container">
+                            <iframe id="youtube-player"
+                                src="https://www.youtube.com/embed/kdXBPCkxDuk?start=39&rel=0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <div class="video-blocker" id="video-blocker">
+                            <div class="blocker-content">
+                                <span class="lock-emoji">🔒</span>
+                                <p>ต้องจ่ายค่าตัวกัสก่อนถึงจะฟังได้ 😆</p>
+                                <button id="unlock-btn">💎 จ่ายเงิน (อัปเกรด VIP)</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="quote-container">
                         <p id="random-quote">กำลังนึกคำจีบอยู่ค้าบบบ... ✨</p>
                     </div>
-
-                    <a href="https://youtube.com/playlist?list=PLw264t7f7ItAMZd9nABN8H1wZYy0EvdcB" target="_blank" class="btn-main">
-                        🎧 เปิดฟังลิสต์ทั้งหมดบน YouTube
+ 
                     </a>
                 </div>
-
-                <div class="request-box">
-                    <h3 class="request-title">มีเพลงไรแนะนำมั้ยอ้วนน? 💌</h3>
-                    <div class="request-input-group">
-                        <input type="text" id="song-input" placeholder="พิมพ์ชื่อเพลง หรือแปะลิงก์ตรงนี้...">
-                        <button id="send-song-btn" class="btn-send-song">ส่งให้กัส 💌</button>
-                    </div>
-                </div>
-
             </div>
         </section>
     </main>
+ 
+    <div id="shopeeModal" class="shopee-modal-overlay">
+         
+        <div id="view-checkout" class="shopee-modal active-view">
+            <div class="shopee-header">
+                <h2>ทำการสั่งซื้อ</h2>
+                <button id="close-shopee" class="shopee-close">✕</button>
+            </div>
+            
+            <div class="shopee-body">
+                <div class="s-section">
+                    <div class="s-shop">
+                        <span>🏬 GusOfficialStore</span>
+                        <span class="s-tag">Mall</span>
+                    </div>
+                    <div class="s-product">
+                        <img src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t1.15752-9/736510709_27478629311764020_7996042121534600819_n.png?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_ohc=RVjM1wChB6YQ7kNvwHTIoTa&_nc_oc=Adoz5ofEsDHUZyzjXbJyw83SEt_EL8jZbuZsFX9Z3ulCcOCj5ZhTV4UHhSbLi1G0HrqHwnTpzpKsjTpHvqIdJTrf&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcnx4-1.fna&_nc_ss=7a22e&oh=03_Q7cD5wEvu7d9Q494UK6cJZRR_IEkyswqU8tyFDNAnWYNhF_jqg&oe=6A6F8A73" alt="product">
+                        <div class="s-details">
+                            <p class="s-name">แพ็กเกจ Lanna Premium 💎  </p>
+                            <div class="s-tiers">
+                                <label><input type="radio" name="plan" value="99"> 1 ชั่วโมง</label>
+                                <label><input type="radio" name="plan" value="599"> 1 วัน</label>
+                                <label><input type="radio" name="plan" value="2999"> 1 สัปดาห์</label>
+                                <label><input type="radio" name="plan" value="9999" checked> 1 เดือน</label>
+                                <label><input type="radio" name="plan" value="99999"> 1 ปี</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="s-section s-flex">
+                    <div>🎫 โค้ดส่วนลดของ Lanna</div>
+                    <div class="s-discount-box">
+                        <input type="text" id="voucher-code" placeholder="กรอกโค้ดลับ...">
+                        <button id="apply-voucher">ใช้โค้ด</button>
+                    </div>
+                </div>
+                <p id="voucher-msg" class="s-msg"></p>
+
+                <div class="s-section" style="padding-bottom: 5px;">
+                    <div style="margin-bottom: 15px; font-weight: 500;">วิธีการชำระเงิน</div>
+                    <div class="pay-grid">
+                        <div class="pay-item" data-method="spay"><span>S</span> PayLater (ผ่อน 0% 99 ปี)</div>
+                        <div class="pay-item" data-method="cod">COD เก็บเงินปลายทาง</div>
+                        <div class="pay-item active" data-method="card">💳 บัตรเครดิต/บัตรเดบิต</div>
+                        <div class="pay-item" data-method="promptpay">📱 QR พร้อมเพย์</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopee-footer">
+                <div class="s-total-text">
+                    ยอดชำระเงินทั้งหมด<br>
+                    <span id="total-price" class="s-price">฿9,999.00</span>
+                </div>
+                <button id="place-order-btn" class="s-submit">สั่งสินค้า</button>
+            </div>
+        </div>
+ 
+        <div id="view-add-card" class="shopee-modal hidden-view" style="width: min(100%, 650px); background: #f6f6f6;">
+            <div class="shopee-header" style="justify-content: flex-start; padding: 20px 30px;">
+                <h2 style="font-size: 1.25rem; color: #222; font-weight: 400;">เพิ่มบัตร</h2>
+            </div>
+            
+            <div class="shopee-body" style="background: #fff; padding: 30px; margin: 0 15px 15px; border-radius: 4px; max-height: 75vh;">
+                
+                <div class="secure-box">
+                    <div class="secure-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                    </div>
+                    <div class="secure-text">
+                        <strong>ข้อมูลบัตรถูกเก็บเป็นความลับ</strong>
+                        <p>ข้อมูลบัตรเครดิตของคุณถูกเก็บรักษาภายใต้มาตรฐานความปลอดภัยในความร่วมมือของ gusshop โดยทางเราจะไม่สามารถเข้าถึงข้อมูลบัตรเครดิตของท่านได้</p>
+                    </div>
+                </div>
+
+                <div class="card-brands-row">
+                    <span>ข้อมูลบัตร</span>
+                    <div class="brand-icons">
+                        <b>VISA</b> <b>Mastercard</b> <b>JCB</b> <b>UnionPay</b>
+                    </div>
+                </div>
+
+                <div class="fake-form">
+                    <input type="text" placeholder="หมายเลขบัตร" class="f-input full" maxlength="19">
+                    <div class="f-row">
+                        <input type="text" placeholder="วันหมดอายุ (ดด/ปป)" class="f-input half" maxlength="5">
+                        <input type="password" placeholder="CVV" class="f-input half" maxlength="3">
+                    </div>
+                    <input type="text" placeholder="ชื่อเจ้าของบัตร" class="f-input full">
+                </div>
+
+                <p class="hold-notice">ระบบจะหักเงินจากบัตรของคุณเป็นจำนวน 1 บาทเพื่อเป็นการยืนยันตัวตน โดยคุณจะได้รับเงินจำนวนนี้คืนภายใน 14 วันทำการ</p>
+
+                <div class="form-actions">
+                    <button id="btn-cancel-card" class="btn-cancel">ยกเลิก</button>
+                    <button id="btn-confirm-card" class="btn-confirm">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <script src="music.js"></script>
 </body>
