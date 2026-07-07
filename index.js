@@ -26,9 +26,17 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const music = document.getElementById('bgMusic');
+// ===== YouTube background music =====
+// เปลี่ยน VIDEO_ID ตรงนี้เป็น id ของคลิปเพลงที่อยากใช้
+// (เอามาจากลิงก์ youtube.com/watch?v=XXXXXXXXXXX ตัว XXXXXXXXXXX คือ id)
+const YT_VIDEO_ID = 'VIDEO_ID_HERE';
+
 const musicIcon = document.getElementById('musicIcon');
 const musicBtn = document.getElementById('musicBtn');
+
+let ytPlayer = null;
+let ytReady = false;
+let wantsPlay = false; // ผู้ใช้กดเปิดเพลงไว้ก่อน player จะพร้อมหรือเปล่า
 
 function setMusicUI(playing) {
   if (musicIcon) musicIcon.textContent = playing ? '♪' : '♫';
@@ -38,30 +46,56 @@ function setMusicUI(playing) {
   }
 }
 
-function toggleMusic() {
-  if (!music) return;
-  if (music.paused) {
-    music.volume = 0.35;
-    music.play().catch(() => {});
-    localStorage.setItem('gus-music', 'on');
-  } else {
-    music.pause();
-    localStorage.setItem('gus-music', 'off');
-  }
+// เรียกอัตโนมัติโดย YouTube IFrame API เมื่อโหลดสคริปต์เสร็จ
+function onYouTubeIframeAPIReady() {
+  if (!document.getElementById('ytPlayer')) return;
+  ytPlayer = new YT.Player('ytPlayer', {
+    videoId: YT_VIDEO_ID,
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      loop: 1,
+      playlist: YT_VIDEO_ID, // จำเป็นสำหรับให้ loop ทำงานกับวิดีโอเดี่ยว
+      playsinline: 1
+    },
+    events: {
+      onReady: () => {
+        ytReady = true;
+        ytPlayer.setVolume(35);
+        // ถ้าผู้ใช้เคยเปิดเพลงไว้ในหน้าก่อน ให้รอ interaction แล้วเล่นต่อ
+        if (localStorage.getItem('gus-music') === 'on') {
+          const resume = () => {
+            ytPlayer.playVideo();
+            document.removeEventListener('click', resume);
+            document.removeEventListener('touchstart', resume);
+          };
+          document.addEventListener('click', resume, { once: true });
+          document.addEventListener('touchstart', resume, { once: true });
+        }
+        if (wantsPlay) ytPlayer.playVideo();
+      },
+      onStateChange: (e) => {
+        if (e.data === YT.PlayerState.PLAYING) setMusicUI(true);
+        if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) setMusicUI(false);
+      }
+    }
+  });
 }
 
-if (music) {
-  music.addEventListener('play', () => setMusicUI(true));
-  music.addEventListener('pause', () => setMusicUI(false));
-  if (localStorage.getItem('gus-music') === 'on') {
-    const resume = () => {
-      music.volume = 0.35;
-      music.play().catch(() => {});
-      document.removeEventListener('click', resume);
-      document.removeEventListener('touchstart', resume);
-    };
-    document.addEventListener('click', resume, { once: true });
-    document.addEventListener('touchstart', resume, { once: true });
+function toggleMusic() {
+  if (!ytReady || !ytPlayer) {
+    // player ยังโหลดไม่เสร็จ เก็บ intent ไว้ก่อน
+    wantsPlay = true;
+    localStorage.setItem('gus-music', 'on');
+    return;
+  }
+  const state = ytPlayer.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) {
+    ytPlayer.pauseVideo();
+    localStorage.setItem('gus-music', 'off');
+  } else {
+    ytPlayer.playVideo();
+    localStorage.setItem('gus-music', 'on');
   }
 }
 
@@ -108,42 +142,3 @@ function tick() {
 }
 setInterval(tick, 1000);
 tick();
-
-async function sendToGus() {
-  const inputEl = document.getElementById('aiInput');
-  const statusEl = document.getElementById('aiStatus');
-  const btnEl = document.getElementById('aiBtn');
-  const userText = inputEl.value.trim();
-
-  if (!userText || btnEl.disabled) return;
-
-  statusEl.style.color = 'var(--text2)';
-  statusEl.textContent = 'กัสกำลังพิมพ์... 💬';
-  btnEl.disabled = true;
-
-  try {
-    const response = await fetch('/.netlify/functions/gus-chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userText })
-    });
-
-    const data = await response.json();
-    statusEl.style.color = 'var(--acc)';
-    statusEl.textContent = data.reply || 'ตอนนี้กัสตอบไม่ได้ ลองพิมพ์ใหม่อีกทีนะ 😅';
-    inputEl.value = '';
-
-  } catch (error) {
-    console.error('Error:', error);
-    statusEl.style.color = 'var(--text3)';
-    statusEl.textContent = "ตอนระบบล่มชั่วคราว ลองทักมาใหม่นะ 😅";
-  } finally {
-    btnEl.disabled = false;
-  }
-}
-
-document.getElementById('aiInput')?.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        sendToGus();
-    }
-});
