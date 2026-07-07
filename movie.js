@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const webhookUrl = "https://discord.com/api/webhooks/1519709047073538058/lakiIJNd2Uvs-af5naZdpiCLmIx1FTuzfd-j8LhcPZOI6n8Z60Qrjinirq5BXWtYCaEJ";
-
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#date-select", {
             dateFormat: "Y-m-d",
@@ -141,24 +139,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 timestamp: new Date().toISOString()
             };
 
-            if (file) {
-                embedCard.image = { url: `attachment://${file.name}` };
-                formData.append('file', file, file.name);
-            }
-
             formData.append('payload_json', JSON.stringify({
                 embeds: [embedCard] 
             }));
+            
             if (file) {
                 formData.append('file', file);
             }
 
-            fetch(webhookUrl, {
+            fetch('/.netlify/functions/notify', {
                 method: 'POST',
                 body: formData 
             }).then(res => {
                 if (res.ok) {
-                    alert("ส่งเรียบร้อยแล้วค้าบบบ เตรียมตัวไปดูหนังกัน! 🥰💙");
+                    alert("ส่งเรียบร้อยแล้วค้าบบบ เตรียมตัวไปกัน! 🥰💙");
                     msgInput.value = "";
                     fileInput.value = '';
                     imagePreview.src = '';
