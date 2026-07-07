@@ -1,6 +1,5 @@
 let currentAmount = 60; 
 const promptpayID = "0801138627";
-const webhookURL = "https://discord.com/api/webhooks/1519709047073538058/lakiIJNd2Uvs-af5naZdpiCLmIx1FTuzfd-j8LhcPZOI6n8Z60Qrjinirq5BXWtYCaEJ";
 
 function selectAmount(amount, btnElement) {
     document.getElementById('customInputWrapper').classList.remove('show');
@@ -90,11 +89,10 @@ function payWithLove() {
     btn.disabled = true;
 
     const payload = {
-        content: `💖 **ด่วน! ลานนาเปย์ความรักให้กัสแล้ว!**\n> จำนวน: **${currentAmount.toLocaleString('th-TH')} 💙**\n> ข้อความ: "${msg || 'ไม่มีข้อความ (แต่มีความรักส่งมาเต็มๆ)'}"`,
-        embeds: [{ color: 3718584 }]
+        content: `💖 **ด่วน! ลานนาเปย์ความรักให้กัสแล้ว!**\n> จำนวน: **${currentAmount.toLocaleString('th-TH')} 💙**\n> ข้อความ: "${msg || 'ไม่มีข้อความ (แต่มีความรักส่งมาเต็มๆ)'}"`
     };
 
-    fetch(webhookURL, {
+    fetch('/.netlify/functions/notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
