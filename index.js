@@ -26,17 +26,15 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ===== YouTube background music =====
-// เปลี่ยน VIDEO_ID ตรงนี้เป็น id ของคลิปเพลงที่อยากใช้
-// (เอามาจากลิงก์ youtube.com/watch?v=XXXXXXXXXXX ตัว XXXXXXXXXXX คือ id)
-const YT_VIDEO_ID = 'VIDEO_ID_HERE';
+const YT_VIDEO_ID = 'MaeX5dV0njY';
+const YT_START_SECONDS = 65;
 
 const musicIcon = document.getElementById('musicIcon');
 const musicBtn = document.getElementById('musicBtn');
 
 let ytPlayer = null;
 let ytReady = false;
-let wantsPlay = false; // ผู้ใช้กดเปิดเพลงไว้ก่อน player จะพร้อมหรือเปล่า
+let wantsPlay = false; 
 
 function setMusicUI(playing) {
   if (musicIcon) musicIcon.textContent = playing ? '♪' : '♫';
@@ -46,7 +44,6 @@ function setMusicUI(playing) {
   }
 }
 
-// เรียกอัตโนมัติโดย YouTube IFrame API เมื่อโหลดสคริปต์เสร็จ
 function onYouTubeIframeAPIReady() {
   if (!document.getElementById('ytPlayer')) return;
   ytPlayer = new YT.Player('ytPlayer', {
@@ -55,14 +52,14 @@ function onYouTubeIframeAPIReady() {
       autoplay: 0,
       controls: 0,
       loop: 1,
-      playlist: YT_VIDEO_ID, // จำเป็นสำหรับให้ loop ทำงานกับวิดีโอเดี่ยว
-      playsinline: 1
+      playlist: YT_VIDEO_ID, 
+      playsinline: 1,
+      start: YT_START_SECONDS
     },
     events: {
       onReady: () => {
         ytReady = true;
         ytPlayer.setVolume(35);
-        // ถ้าผู้ใช้เคยเปิดเพลงไว้ในหน้าก่อน ให้รอ interaction แล้วเล่นต่อ
         if (localStorage.getItem('gus-music') === 'on') {
           const resume = () => {
             ytPlayer.playVideo();
@@ -84,7 +81,6 @@ function onYouTubeIframeAPIReady() {
 
 function toggleMusic() {
   if (!ytReady || !ytPlayer) {
-    // player ยังโหลดไม่เสร็จ เก็บ intent ไว้ก่อน
     wantsPlay = true;
     localStorage.setItem('gus-music', 'on');
     return;
@@ -129,6 +125,50 @@ if (bar) {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
     bar.style.width = pct + '%';
+  });
+}
+
+const mascotStage = document.getElementById('mascotStage');
+if (mascotStage) {
+  const chars = Array.from(mascotStage.querySelectorAll('.mascot-char'));
+  const order = ['bear', 'rabbit', 'cat', 'poodle'];
+  const pairs = [[order[0], order[1]], [order[2], order[3]]];
+  let pairIndex = 0;
+
+  function showPair(i) {
+    const [a, b] = pairs[i];
+    chars.forEach((el) => {
+      el.classList.remove('slot-a', 'slot-b');
+      const type = el.getAttribute('data-char');
+      if (type === a) el.classList.add('slot-a');
+      if (type === b) el.classList.add('slot-b');
+    });
+  }
+
+  showPair(pairIndex);
+  setInterval(() => {
+    pairIndex = (pairIndex + 1) % pairs.length;
+    showPair(pairIndex);
+  }, 24000);
+
+  mascotStage.addEventListener('click', (e) => {
+    const charEl = e.target.closest('.mascot-char');
+    if (!charEl || !charEl.classList.contains('slot-a') && !charEl.classList.contains('slot-b')) return;
+    const rect = charEl.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height * 0.3;
+    const hearts = ['💙', '✦', '♡'];
+    for (let i = 0; i < 3; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart-pop';
+      el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      el.style.left = originX + 'px';
+      el.style.top = originY + 'px';
+      el.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+      el.style.animationDelay = (i * 0.08) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1300);
+    }
   });
 }
 
