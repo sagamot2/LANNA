@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { 
     const modeToggle = document.getElementById('modeToggle');
     const htmlElement = document.documentElement;
     const currentTheme = localStorage.getItem('theme');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', newMode);
         });
     }
-
+ 
     const quotes = [
         "ฟังเพลงนี้แล้วนึกถึงใคร... นึกถึงลานนาแน่เลย อิอิ 🤭💙",
         "คนอะไรไม่รู้ ยิ่งดูยิ่งน่ารักกกก ✨",
@@ -29,49 +29,108 @@ document.addEventListener('DOMContentLoaded', function() {
         quoteElement.innerText = quotes[randomIndex];
     }
 
-    const webhookUrl = "https://discord.com/api/webhooks/1519709047073538058/lakiIJNd2Uvs-af5naZdpiCLmIx1FTuzfd-j8LhcPZOI6n8Z60Qrjinirq5BXWtYCaEJ";
-    const songInput = document.getElementById("song-input");
-    const sendSongBtn = document.getElementById("send-song-btn");
-
-    if (sendSongBtn) {
-        sendSongBtn.addEventListener('click', () => {
-            const songData = songInput.value.trim();
-
-            if (songData === "") {
-                alert("ลานนายังไม่ได้พิมพ์ชื่อเพลงเลยน้าาา 😆💙");
-                return;
-            }
-
-            const originalBtnText = sendSongBtn.innerText;
-            sendSongBtn.innerText = "กำลังส่งไปให้กัส... 🚀";
-            sendSongBtn.disabled = true;
-
-            const embedCard = {
-                title: "🎧 ลานนาส่งเพลงมาให้ฟัง!",
-                description: `**เพลง/ลิงก์:** ${songData}`,
-                color: 3718584, 
-                footer: { text: "GUS x LANNA RADIO 📻" },
-                timestamp: new Date().toISOString()
-            };
-
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ embeds: [embedCard] })
-            }).then(res => {
-                if (res.ok) {
-                    alert("ส่งเพลงให้กัสเรียบร้อยแล้ว! เดี๋ยวกัสรีบไปฟังเลย 🥰💙");
-                    songInput.value = "";
-                } else {
-                    alert("แง ส่งไม่สำเร็จ ลองกดส่งใหม่อีกทีนะ");
-                }
-            }).catch(err => {
-                console.error(err);
-                alert("เน็ตหลุดป่าวลานนา ลองกดส่งใหม่ดูนะ");
-            }).finally(() => {
-                sendSongBtn.innerText = originalBtnText;
-                sendSongBtn.disabled = false;
-            });
-        });
+    const unlockBtn = document.getElementById('unlock-btn');
+    const modalOverlay = document.getElementById('shopeeModal');
+    const closeBtn = document.getElementById('close-shopee');
+    const viewCheckout = document.getElementById('view-checkout');
+    const viewAddCard = document.getElementById('view-add-card');
+    const priceRadios = document.querySelectorAll('input[name="plan"]');
+    const totalPriceEl = document.getElementById('total-price');
+    const voucherInput = document.getElementById('voucher-code');
+    const applyVoucherBtn = document.getElementById('apply-voucher');
+    const voucherMsg = document.getElementById('voucher-msg');
+    const payItems = document.querySelectorAll('.pay-item');
+    const placeOrderBtn = document.getElementById('place-order-btn');
+    const btnCancelCard = document.getElementById('btn-cancel-card');
+    const btnConfirmCard = document.getElementById('btn-confirm-card');
+    const videoBlocker = document.getElementById('video-blocker');
+    const ytPlayer = document.getElementById('youtube-player');
+    let currentBasePrice = 9999;
+    let discountPercent = 0;
+ 
+    function updatePrice() {
+        let finalPrice = currentBasePrice * (1 - discountPercent);
+        totalPriceEl.innerText = `฿${finalPrice.toLocaleString('th-TH', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
     }
+ 
+    function closeModal() {
+        modalOverlay.classList.remove('open');
+        setTimeout(() => {
+            viewAddCard.classList.remove('active-view');
+            viewAddCard.classList.add('hidden-view');
+            viewCheckout.classList.remove('hidden-view');
+            viewCheckout.classList.add('active-view');
+        }, 300);
+    }
+ 
+    if(unlockBtn) unlockBtn.addEventListener('click', () => modalOverlay.classList.add('open'));
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if(e.target === modalOverlay) closeModal();
+    });
+ 
+    priceRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            currentBasePrice = parseInt(e.target.value);
+            updatePrice();
+        });
+    });
+ 
+    applyVoucherBtn.addEventListener('click', () => {
+        const code = voucherInput.value.trim().toLowerCase();
+        if(code === 'lannasocute999') {
+            discountPercent = 0.99;
+            voucherMsg.innerText = "🎉 โค้ดถูกต้อง! รับส่วนลดความน่ารัก 99%";
+            voucherMsg.style.display = "block";
+            voucherMsg.style.color = "#00bfa5";
+            updatePrice();
+        } else {
+            discountPercent = 0;
+            voucherMsg.innerText = "❌ โค้ดไม่ถูกต้อง (คำใบ้: lannasocute999)";
+            voucherMsg.style.display = "block";
+            voucherMsg.style.color = "#ee4d2d";
+            updatePrice();
+        }
+    });
+ 
+    payItems.forEach(item => {
+        item.addEventListener('click', () => {
+            payItems.forEach(b => b.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+ 
+    function unlockVideo() {
+        alert(`🎉 หักเงิน ${totalPriceEl.innerText} สำเร็จ!\n\nขอบคุณที่เปย์นะลานนา 😆 หยอกๆ กัสแค่ปั่นเล่น ไปฟังเพลงกันเถอะ 💙`);
+        closeModal();
+        videoBlocker.classList.add('hidden');
+        let currentSrc = ytPlayer.src;
+        if(!currentSrc.includes('autoplay=1')) {
+            ytPlayer.src = currentSrc + "&autoplay=1";
+        }
+    }
+ 
+    placeOrderBtn.addEventListener('click', () => {
+        let selectedMethod = document.querySelector('.pay-item.active').getAttribute('data-method');
+        
+        if (selectedMethod === 'card') { 
+            viewCheckout.classList.remove('active-view');
+            viewCheckout.classList.add('hidden-view');
+            viewAddCard.classList.remove('hidden-view');
+            viewAddCard.classList.add('active-view');
+        } else { 
+            unlockVideo();
+        }
+    });
+ 
+    btnCancelCard.addEventListener('click', () => {
+        viewAddCard.classList.remove('active-view');
+        viewAddCard.classList.add('hidden-view');
+        viewCheckout.classList.remove('hidden-view');
+        viewCheckout.classList.add('active-view');
+    });
+ 
+    btnConfirmCard.addEventListener('click', () => {
+        unlockVideo();
+    });
 });
