@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Secret 💙</title>
+    <title>วันสำคัญของเรา 💙</title>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700&family=Mitr:wght@300;400;500&family=Sriracha&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="time.css">
 </head>
@@ -11,6 +11,7 @@
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">← กลับหน้าหลัก</a>
         <div class="nav-right">
+            <button class="music-btn" id="musicToggle" aria-label="Toggle Music" title="เปิด/ปิดเพลง">🎵</button>
             <button class="mode-btn" id="modeToggle" aria-label="Toggle Theme"></button>
         </div>
     </nav>
@@ -18,50 +19,154 @@
     <div class="background-effects">
         <div class="glow-orb orb-1"></div>
         <div class="glow-orb orb-2"></div>
+        <div class="grain"></div>
     </div>
 
     <main>
         <section class="hero">
             <div class="hero-inner">
-                <span class="hero-badge">TOP SECRET 🔒</span>
-                
-                <div id="scanner-view" class="glass-card">
-                    <h1 class="hero-title">ความลับ 🚫</h1>
-                    <p class="subtitle">ระบบตรวจจับความน่ารัก... กรุณายืนยันตัวตนว่าเป็น <b>"ลานนา"</b> เพื่อเปิดอ่านความลับ</p>
-                    
-                    <div class="scanner-container">
-                        <div class="fingerprint-box" id="scan-btn">
-                            <div class="scan-line" id="scan-line"></div>
-                            <svg class="finger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                <path d="M12 6C8.686 6 6 8.686 6 12C6 14.5 7.5 16.5 9.5 17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                <path d="M12 10C10.895 10 10 10.895 10 12C10 13.5 11 14.5 12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                <path d="M16 12C16 9.79 14.21 8 12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
+                <span class="hero-badge">นับถอยหลัง 🕯️</span>
+                <h1 class="hero-title">วันของเราและวันสำคัญ</h1>
+                <p class="subtitle">บันทึกช่วงเวลาดีๆ ที่เราตั้งตารอไปด้วยกัน 💙</p>
+
+                <div class="date-list" id="dateList">
+
+                    <div class="date-card" data-month="5" data-day="22" id="card-gas">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🎂</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันเกิดกัส</h3>
+                            <p class="date-sub">22 มิถุนายน</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🎉 วันนี้แหละ! สุขสันต์วันเกิดกัส 🎉</p>
                         </div>
                     </div>
-                    <p class="scan-status" id="scan-status">แตะค้างไว้เพื่อสแกนนิ้ว 👆</p>
-                </div>
 
-                <div id="secret-view" class="glass-card hidden">
-                    <div class="unlock-icon">🔓</div>
-                    <h2 class="secret-title">Access Granted ✨</h2>
-                    <p class="secret-message">
-                        "ความลับก็คือ... ไว้มาบอก 💙" <br>
-                    </p>
-                    
-                    <div class="divider"></div>
-                    
-                    <div class="input-group">
-                        <label for="answerInput">พิมพ์ความรู้สึกส่งกลับมาให้กัสหน่อยยย 👇</label>
-                        <input type="text" id="answerInput" placeholder="พิมพ์ตรงนี้เลย...">
-                        <button id="sendBtn" class="btn-main btn-fill">ส่งความรู้สึก 💌</button>
+                    <div class="date-card" data-month="9" data-day="13" id="card-lanna">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🎂</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันเกิดลานนา</h3>
+                            <p class="date-sub">13 ตุลาคม</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🎉 วันนี้แหละ! สุขสันต์วันเกิดลานนา 🎉</p>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="date-card" data-month="0" data-day="1">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🎆</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันขึ้นปีใหม่</h3>
+                            <p class="date-sub">1 มกราคม</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🎉 Happy New Year! เริ่มต้นปีใหม่ไปด้วยกันนะ 🎉</p>
+                        </div>
+                    </div>
+
+                    <div class="date-card" data-month="1" data-day="14">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">💖</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันวาเลนไทน์</h3>
+                            <p class="date-sub">14 กุมภาพันธ์</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🌹 สุขสันต์วันแห่งความรัก ขอให้มีความสุขมากๆ นะ 🌹</p>
+                        </div>
+                    </div>
+
+                    <div class="date-card" data-month="9" data-day="31">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🎃</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันฮาโลวีน</h3>
+                            <p class="date-sub">31 ตุลาคม</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">👻 Trick or Treat! แบร่ๆๆ วันปล่อยผีจ้า 👻</p>
+                        </div>
+                    </div>
+
+                    <div class="date-card" data-month="10" data-day="24">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🪷</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันลอยกระทง</h3>
+                            <p class="date-sub">24 พฤศจิกายน</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🌕 วันเพ็ญเดือนสิบสอง ไปลอยกระทงขอพรกัน 🌕</p>
+                        </div>
+                    </div>
+
+                    <div class="date-card" data-month="11" data-day="25">
+                        <div class="gauge">
+                            <div class="gauge-inner"><span class="gauge-emoji">🎄</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันคริสต์มาส</h3>
+                            <p class="date-sub">25 ธันวาคม</p>
+                            <div class="countdown">
+                                <div class="cd-unit"><span class="cd-num" data-unit="d">00</span><span class="cd-label">วัน</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="h">00</span><span class="cd-label">ชม.</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="m">00</span><span class="cd-label">นาที</span></div>
+                                <div class="cd-unit"><span class="cd-num" data-unit="s">00</span><span class="cd-label">วิ</span></div>
+                            </div>
+                            <p class="today-msg hidden">🎅 Merry Christmas! มีความสุขในวันคริสต์มาสนะครับ 🎅</p>
+                        </div>
+                    </div>
+
+                    <div class="date-card anniversary">
+                        <div class="gauge waiting">
+                            <div class="gauge-inner"><span class="gauge-emoji">💭</span></div>
+                        </div>
+                        <div class="date-info">
+                            <h3 class="date-name">วันคบกัน</h3>
+                            <p class="date-sub">ยังไม่มีวันนี้เกิดขึ้น...</p>
+                            <p class="waiting-msg">รอวันที่ได้เป็นแฟนกันอยู่นะ 🥺💗</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>
+
+    <div id="yt-player" style="position: absolute; left: -9999px; width: 1px; height: 1px;"></div>
 
     <script src="time.js"></script>
 </body>
